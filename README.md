@@ -1,2 +1,3 @@
-# att
-all the turkey chat platform
+# turQ
+
+all the turkey's chat platform
