@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: turQ v1
+  version: '1.0'
+  description: turQ v1 api specification
+  license:
+    name: MIT
+    url: 'https://github.com/uta8a/turQ/blob/main/LICENSE'
+  contact:
+    name: uta8a
+    url: 'https://github.com/uta8a/turQ'
+    email: 'uta8a@uta8a.org'
+servers:
+  - url: 'http://localhost:3000/api/v1'
+    description: local
+paths:
+  '/healthcheck':
+    get:
+      summary: 'サーバの単体での生存確認'
+      description: 'サーバの死活を監視する。DBなど他のサービスの生存は調べない'
+      responses:
+        '200':
+          description: 'サーバが生きている'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+        '503':
+          description: 'サーバが落ちている'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 503
