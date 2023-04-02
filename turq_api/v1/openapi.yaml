@@ -39,3 +39,125 @@ paths:
                   status:
                     type: number
                     example: 503
+  '/users':
+    get:
+      summary: 'ユーザ一覧を取得'
+      description: 'ユーザ一覧を取得する'
+      responses:
+        '200':
+          description: 'ユーザ一覧を取得'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 1
+                        name:
+                          type: string
+                          example: 'uta8a'
+                        email:
+                          type: string
+                          example: 'uta8a@uta8a.org'
+        '401':
+          description: '認証エラー'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                    example: 'Unauthorized'
+        '500':
+          description: 'サーバエラー'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+    post:
+      summary: 'ユーザを作成'
+      description: 'ユーザを作成する'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'uta8a'
+                email:
+                  type: string
+                  example: 'uta8a@uta8a.org'
+                password:
+                  type: string
+                  example: 'password'
+      responses:
+        '201':
+          description: 'ユーザを作成'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1
+                      name:
+                        type: string
+                        example: 'uta8a'
+                      email:
+                        type: string
+                        example: 'uta8a@uta8a.org'
+        '400':
+          description: 'バリデーションエラー'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 400
+                  message:
+                    type: string
+                    example: 'Bad Request'
+        '500':
+          description: 'サーバエラー'
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
